@@ -10947,6 +10947,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getAllTodos = getAllTodos;
 exports.addTodo = addTodo;
+exports.removeTodo = removeTodo;
 
 var _todoData = _interopRequireDefault(require("../todo-data.json"));
 
@@ -10959,6 +10960,14 @@ function getAllTodos() {
 function addTodo(todo) {
   _todoData.default.push(todo);
 }
+
+function removeTodo(id) {
+  _todoData.default = (_todoData.default.filter(function (item) {
+    return item.id !== id;
+  }), function () {
+    throw new Error('"' + "todo_data" + '" is read-only.');
+  }());
+}
 },{"../todo-data.json":"todo-data.json"}],"images/delete.png":[function(require,module,exports) {
 module.exports = "/delete.0ca3ab0c.png";
 },{}],"js/ui.js":[function(require,module,exports) {
@@ -10969,11 +10978,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.renderTodos = renderTodos;
 exports.clearNewTodoInput = clearNewTodoInput;
+exports.getTodoId = getTodoId;
 
 var _delete = _interopRequireDefault(require("../images/delete.png"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import $ from 'jquery';
 function renderTodos(todos) {
   var todoArray = todos.map(function (todo) {
     var className = todo.completed ? 'completed' : '';
@@ -10985,6 +10996,12 @@ function renderTodos(todos) {
 
 function clearNewTodoInput() {
   document.querySelector('.new-todo').value = '';
+}
+
+function getTodoId(el) {
+  // return $(el).parent().attr('data-id');
+  return el.parentNode.dataset.id;
+  console.log(el.parentNode.dataset.id);
 }
 },{"../images/delete.png":"images/delete.png"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
@@ -11087,6 +11104,12 @@ window.addEventListener('load', function () {
   (0, _ui.clearNewTodoInput)();
   (0, _ui.renderTodos)((0, _data.getAllTodos)());
 });
+(0, _jquery.default)(document).on('click', '.delete', function (e) {
+  var id = (0, _ui.getTodoId)(e.target);
+  console.log('id= ', id);
+  (0, _data.removeTodo)(id);
+  (0, _ui.renderTodos)((0, _data.getAllTodos)());
+});
 },{"jquery":"../node_modules/jquery/dist/jquery.js","./data":"js/data.js","./ui":"js/ui.js","../css/index.scss":"css/index.scss"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -11115,7 +11138,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56400" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59880" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

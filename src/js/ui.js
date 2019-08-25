@@ -1,3 +1,4 @@
+// import $ from 'jquery';
 import DeleteImage from '../images/delete.png';
 
 export function renderTodos(todos){
@@ -17,4 +18,10 @@ export function renderTodos(todos){
 
 export function clearNewTodoInput(){
   document.querySelector('.new-todo').value = '';
+}
+
+export function getTodoId(el){
+  // return $(el).parent().attr('data-id');
+  return el.parentNode.dataset.id;
+  console.log(el.parentNode.dataset.id)
 }

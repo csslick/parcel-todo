@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { getAllTodos, addTodo } from './data';
-import { renderTodos, clearNewTodoInput } from './ui';
+import { getAllTodos, addTodo, removeTodo } from './data';
+import { renderTodos, clearNewTodoInput, getTodoId } from './ui';
 import '../css/index.scss';
 
 // 할일 목록 초기화
@@ -21,6 +21,12 @@ $('.new-todo').on('change', function(e){
   renderTodos(getAllTodos());
 })
 
+$(document).on('click', '.delete', function(e){
+  const id = getTodoId(e.target);
+  console.log('id= ', id)
+  removeTodo(id);
+  renderTodos(getAllTodos());
+})
 
 
 
