@@ -10959,7 +10959,9 @@ function getAllTodos() {
 function addTodo(todo) {
   _todoData.default.push(todo);
 }
-},{"../todo-data.json":"todo-data.json"}],"js/ui.js":[function(require,module,exports) {
+},{"../todo-data.json":"todo-data.json"}],"images/delete.png":[function(require,module,exports) {
+module.exports = "/delete.0ca3ab0c.png";
+},{}],"js/ui.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10968,10 +10970,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.renderTodos = renderTodos;
 exports.clearNewTodoInput = clearNewTodoInput;
 
+var _delete = _interopRequireDefault(require("../images/delete.png"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function renderTodos(todos) {
   var todoArray = todos.map(function (todo) {
     var className = todo.completed ? 'completed' : '';
-    return "\n      <li data-id=\"".concat(todo.id, "\" class=\"").concat(className, "\">\n        <span class=\"custom-checkbox\"></span>\n        <label>").concat(todo.title, "</label>\n      </li>\n    ");
+    return "\n      <li data-id=\"".concat(todo.id, "\" class=\"").concat(className, "\">\n        <span class=\"custom-checkbox\"></span>\n        <label>").concat(todo.title, "</label>\n        <img src=\"").concat(_delete.default, "\" class=\"delete\" width=\"30\" height=\"30\">\n       </li>\n    ");
   });
   console.log(todoArray.join(''));
   document.querySelector('.todo-list').innerHTML = todoArray.join('');
@@ -10980,7 +10986,7 @@ function renderTodos(todos) {
 function clearNewTodoInput() {
   document.querySelector('.new-todo').value = '';
 }
-},{}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"../images/delete.png":"images/delete.png"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -11109,7 +11115,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60272" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56400" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

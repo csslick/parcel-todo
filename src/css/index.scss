@@ -17,6 +17,11 @@ h1{
   text-align: center;
   font-size: 80px;
 }
+.header-image{
+  width: 100%;
+  object-fit:cover;
+  height: 200px;
+}
 .todoList-wrapper{
   width: 80%;
   margin: 40px auto;
@@ -54,4 +59,14 @@ h1{
 .todo-list li label{
   flex: 1;
   padding: 15px;
+}
+.delete{
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+  visibility: hidden;
+}
+.todo-list li:hover .delete{
+  visibility: visible;
 }
