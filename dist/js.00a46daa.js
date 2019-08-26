@@ -10953,20 +10953,23 @@ var _todoData = _interopRequireDefault(require("../todo-data.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// 초기값은 read-only
+// todo_data 업데이트용 변수에 대입
+var todo_data = _todoData.default;
+
 function getAllTodos() {
-  return _todoData.default;
+  return todo_data;
 }
 
 function addTodo(todo) {
-  _todoData.default.push(todo);
+  todo_data.push(todo);
 }
 
 function removeTodo(id) {
-  _todoData.default = (_todoData.default.filter(function (item) {
-    return item.id !== id;
-  }), function () {
-    throw new Error('"' + "todo_data" + '" is read-only.');
-  }());
+  todo_data = todo_data.filter(function (item) {
+    return item.id !== parseInt(id);
+  });
+  console.log('tood_data = ' + todo_data);
 }
 },{"../todo-data.json":"todo-data.json"}],"images/delete.png":[function(require,module,exports) {
 module.exports = "/delete.0ca3ab0c.png";
@@ -11138,7 +11141,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59880" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54654" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
